@@ -12,3 +12,7 @@ LazyData: true
 RoxygenNote: 7.1.2
 URL: https://github.com/nupelia/NUPcollection
 BugReports: https://github.com/nupelia/NUPcollection/issues
+Imports: 
+    dplyr,
+    stringr,
+    tidyr

@@ -3,9 +3,6 @@
 #' @param data Species dataset
 #' @param species_var Species variable name
 #'
-#' @importFrom dplyr %>%
-#' @importFrom utils head
-#'
 #' @export
 
 abbr_species <- function(data, species_var = "especie"){

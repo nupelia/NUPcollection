@@ -4,14 +4,21 @@
 \alias{species_compare}
 \title{Species compare}
 \usage{
-species_compare(data, species_target, measure_var = "medidas")
+species_compare(
+  data,
+  species_target,
+  species_var = "especie",
+  measure_var = "medidas"
+)
 }
 \arguments{
-\item{data}{data}
+\item{data}{Species dataset}
 
-\item{species_target}{species_target}
+\item{species_target}{The target species to compare}
 
-\item{measure_var}{measure_var}
+\item{species_var}{The species variable name. Defaults to "especie"}
+
+\item{measure_var}{The measure variable name. Defaults to "medidas"}
 }
 \description{
 Species compare

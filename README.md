@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# NUPcollection
+# NUPcollection <a href="https://nupelia.github.io/NUPcollection/"><img src="man/figures/logo.png" align="right" height="120" /></a>
 
 <!-- badges: start -->
 <!-- badges: end -->

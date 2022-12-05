@@ -74,6 +74,61 @@
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"nupelia/NUPcollection"</span><span class="op">)</span></span></code></pre></div>
 </div>
+<div class="section level2">
+<h2 id="use">Use<a class="anchor" aria-label="anchor" href="#use"></a>
+</h2>
+<div class="section level3">
+<h3 id="function-abbr_species">Function <code>abbr_species()</code>
+<a class="anchor" aria-label="anchor" href="#function-abbr_species"></a>
+</h3>
+<p>This function is intended to abbreviate the genus in scientific names to make them easier to read later. If the abbreviated names are identical (like <em>A. lacustris</em> for <em>Acestrorhynchus lacustris</em> and <em>Astyanax lacustris</em>, for example), the first 3 letters of the genus are used.</p>
+<table class="table">
+<thead><tr class="header">
+<th align="left">species</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Acestrorhynchus lacustris</td>
+</tr>
+<tr class="even">
+<td align="left">Aequidens plagiozonatus</td>
+</tr>
+<tr class="odd">
+<td align="left">Ageneiosus inermis</td>
+</tr>
+<tr class="even">
+<td align="left">Ageneiosus ucayalensis</td>
+</tr>
+<tr class="odd">
+<td align="left">Astyanax lacustris</td>
+</tr>
+</tbody>
+</table>
+<p>The table presented above would look like this:</p>
+<table class="table">
+<thead><tr class="header">
+<th align="left">species</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ace. lacustris</td>
+</tr>
+<tr class="even">
+<td align="left">A. plagiozonatus</td>
+</tr>
+<tr class="odd">
+<td align="left">A. inermis</td>
+</tr>
+<tr class="even">
+<td align="left">A. ucayalensis</td>
+</tr>
+<tr class="odd">
+<td align="left">Ast. lacustris</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
   </main><aside class="col-md-3"><div class="license">
 <h2 data-toc-skip>License</h2>

@@ -4,12 +4,12 @@
 \alias{abbr_species}
 \title{Abbreviate species}
 \usage{
-abbr_species(data, species_var = "especie")
+abbr_species(data, species_var = "species")
 }
 \arguments{
 \item{data}{Species dataset}
 
-\item{species_var}{Species variable name}
+\item{species_var}{Current species variable name. Defalts to "species"}
 }
 \description{
 Abbreviate species

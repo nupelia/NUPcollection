@@ -28,3 +28,36 @@ You can install the development version of NUPcollection from [GitHub](https://g
 # install.packages("devtools")
 devtools::install_github("nupelia/NUPcollection")
 ```
+
+
+## Use
+
+### Function `abbr_species()`
+
+This function is intended to abbreviate the genus in scientific names to make them easier to read later.
+If the abbreviated names are identical (like *A. lacustris* for *Acestrorhynchus lacustris* and *Astyanax lacustris*, for example), the first 3 letters of the genus are used.
+
+```{r, echo=FALSE,warning=FALSE,message=FALSE,results='asis'}
+library(knitr)
+library(dplyr)
+library(NUPcollection)
+table_example <- data.frame(
+  species = c("Acestrorhynchus lacustris",
+              "Aequidens plagiozonatus",
+              "Ageneiosus inermis",
+              "Ageneiosus ucayalensis",
+              "Astyanax lacustris")
+)
+
+options(knitr.kable.NA = '')
+kable(table_example)
+```
+
+The table presented above would look like this:
+
+```{r, echo=FALSE}
+table_example2 <- table_example %>%
+  abbr_species()
+
+kable(table_example2)
+```

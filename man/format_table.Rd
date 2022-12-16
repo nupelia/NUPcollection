@@ -4,12 +4,19 @@
 \alias{format_table}
 \title{Format table}
 \usage{
-format_table(data, species_var = "especie", sep = " - ")
+format_table(
+  data,
+  species_var = "especie",
+  measure_var = "medidas",
+  sep = " - "
+)
 }
 \arguments{
 \item{data}{Species dataset}
 
 \item{species_var}{The species variable name. Defaults to "especie"}
+
+\item{measure_var}{The measures variable name. Defaults to "medidas"}
 
 \item{sep}{Separator of measures. Defaults to " - "}
 }

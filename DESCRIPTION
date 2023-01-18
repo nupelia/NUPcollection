@@ -2,7 +2,7 @@ Package: NUPcollection
 Title: R package for NUP Collection
 Version: 0.0.0.9000
 Authors@R: c(
-    person("Bruno", "Stabile" , "bhmstabile@gmail.com", role = c("aut", "cre"),
+    person("Bruno", "Stabile", , "bhmstabile@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-3524-537X"),
            ),
     person("Thiago", "Pedroso", role = "ctb")

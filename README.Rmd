@@ -13,29 +13,30 @@ knitr::opts_chunk$set(
 )
 ```
 
-# NUPcollection <a href="https://nupelia.github.io/NUPcollection/"><img src="man/figures/logo.png" align="right" height="120" /></a>
+# NUPcollection <a href="https://nupelia.github.io/NUPcollection/"><img src="man/figures/logo.png" align="right" height="120"/></a>
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
-The goal of NUPcollection is to ...
+The goal of NUPcollection is to make the comparison of morphometric data faster and more accurate, helping taxonomists compare species.
+
+It was created by the students of Nupélia's Ichthyology Collection (NUP).
 
 ## Installation
 
 You can install the development version of NUPcollection from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("nupelia/NUPcollection")
+# install.packages("remotes")
+remotes::install_github("nupelia/NUPcollection")
 ```
-
 
 ## Use
 
 ### Function `abbr_species()`
 
-This function is intended to abbreviate the genus in scientific names to make them easier to read later.
-If the abbreviated names are identical (like *A. lacustris* for *Acestrorhynchus lacustris* and *Astyanax lacustris*, for example), the first 3 letters of the genus are used.
+This function is intended to abbreviate the genus in scientific names to make them easier to read later. If the abbreviated names are identical (like *A. lacustris* for *Acestrorhynchus lacustris* and *Astyanax lacustris*, for example), the first 3 letters of the genus are used.
 
 ```{r, echo=FALSE,warning=FALSE,message=FALSE,results='asis'}
 library(knitr)
@@ -51,6 +52,7 @@ table_example <- data.frame(
 
 options(knitr.kable.NA = '')
 kable(table_example)
+devtools::load_all()
 ```
 
 The table presented above would look like this:
@@ -61,3 +63,56 @@ table_example2 <- table_example %>%
 
 kable(table_example2)
 ```
+
+### Function `format_table()`
+
+This function is an auxiliary tool to transform the table usually created by taxonomists into a format that the `species_compare()` function uses.
+
+**R uses `.` as decimal mark, so you have to change it on your table before importing it.**
+
+For this function, we can use the pre-installed example table from this package, the `sp_example_data`
+
+```{r}
+sp_example_data
+```
+```{r}
+table1 <- format_table(sp_example_data)
+
+#formatted table
+table1
+```
+
+
+### Function `species_compare()`
+
+The `species_compare()` function is used to analyze morphometric data between different populations by checking for **overlap** in the data. This function analyzes the values obtained for a particular measure and compares them with the same measures from other populations, and returns only the data that do not overlap, together with the name of the measure, the range of variation of the values, and the population from which it differs.
+
+This function requires a specially formatted data table, which can be obtained with the `format_table()` function.
+
+When using this function, it has the following arguments:
+
+-   `data`: The dataset to be used in this function.
+
+-   `species_target`: The target species to compare.
+
+-   `species_var`: The species variable name. Defaults to "especie".
+
+-   `measure_var`: The measure variable name. Defaults to "medidas".
+
+The returning dataset adds the following variables:
+
+-  `species_target`: The target species being compared.
+
+-  `min_target`: The minimum value of the **target species**.
+
+-  `max_target`: The maximum value of the **target species**.
+
+-  `sp_lower`: Is the **species (in the 1st column) value**, lower than the **target species**? Returns TRUE or FALSE.
+
+-  `sp_higher`: Is the **species (in the 1st column) value**, higher than the **target species**? Returns TRUE or FALSE.
+
+```{r}
+table1 %>% 
+  species_compare(species_target = "sp1")
+```
+

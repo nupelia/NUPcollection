@@ -14,8 +14,8 @@ species_compare <- function(data,
   data2 <- data %>%
     dplyr::group_by_at(measure_var) %>%
     dplyr::mutate(species_target = species_target,
-           min_target = ifelse(especie == species_target, min, NA),
-           max_target = ifelse(especie == species_target, max, NA)) %>%
+                  min_target = ifelse(especie == species_target, min, NA),
+                  max_target = ifelse(especie == species_target, max, NA)) %>%
     dplyr::arrange(min_target, .by_group = TRUE) %>%
     tidyr::fill(min_target) %>%
     dplyr::arrange(max_target, .by_group = TRUE) %>%

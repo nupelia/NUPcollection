@@ -151,3 +151,98 @@ table1 %>%
 #> # ... with abbreviated variable names 1: species_target, 2: min_target,
 #> #   3: max_target, 4: sp_lower, 5: sp_higher
 ```
+
+# MGMS functions
+
+## Function `format_table_cpue()`
+
+The format_table_cpue function is designed to take in a data frame, and
+reformat it into a long format. The function uses the pivot_longer
+function from the `tidyr` package to reshape the data. The function
+takes in two arguments:
+
+- `data`: The data frame that needs to be reformatted.
+
+- `first_sp_col`: The first column of the species column, which will be
+  used to reshape the data. This argument has a default value of **3**.
+
+The function returns a data frame in long format, with columns for
+`site`, `species` and `cpue.`
+
+``` r
+df <- data.frame(
+  site = c("A", "B", "C", "D"),
+  gear = c(1, 1, 1, 1),
+  sp1 = c(2, 3, 5, 6),
+  sp2 = c(1, 4, 2, 7),
+  sp3 = c(4, 5, 1, 8))
+
+# View the expected dataframe
+df
+#>   site gear sp1 sp2 sp3
+#> 1    A    1   2   1   4
+#> 2    B    1   3   4   5
+#> 3    C    1   5   2   1
+#> 4    D    1   6   7   8
+```
+
+``` r
+# Format the table of CPUE
+df2 <- format_table_cpue(df, first_sp_col = 3)
+
+df2
+#> # A tibble: 12 x 4
+#>    site   gear species  cpue
+#>    <chr> <dbl> <chr>   <dbl>
+#>  1 A         1 sp1         2
+#>  2 A         1 sp2         1
+#>  3 A         1 sp3         4
+#>  4 B         1 sp1         3
+#>  5 B         1 sp2         4
+#>  6 B         1 sp3         5
+#>  7 C         1 sp1         5
+#>  8 C         1 sp2         2
+#>  9 C         1 sp3         1
+#> 10 D         1 sp1         6
+#> 11 D         1 sp2         7
+#> 12 D         1 sp3         8
+```
+
+## Function `add_mgms()`
+
+The add_mgms function is designed to take in a data frame, and add a
+Multigear Mean Standardization (MGMS) column to it. The function uses
+the group_by, mutate, ungroup, and select functions from the dplyr
+package to perform the calculations and reshape the data. The function
+takes in three arguments:
+
+- `data`: The data frame that needs to be modified.
+
+- `site_var`: The name of the column in data that contains the site
+  information. This argument has a default value of “site”.
+
+- `cpue_var`: The name of the column in data that contains the Catch Per
+  Unit Effort (CPUE) information. This argument has a default value of
+  “cpue”.
+
+The function returns the original dataframe with an additional column
+‘mgms’ containing the result of MGMS calculations.
+
+``` r
+add_mgms(df2, site_var = "site", cpue_var = "cpue")
+#> # A tibble: 12 x 5
+#>    site   gear species  cpue   mgms
+#>    <chr> <dbl> <chr>   <dbl>  <dbl>
+#>  1 A         1 sp1         2 0.167 
+#>  2 A         1 sp2         1 0.0833
+#>  3 A         1 sp3         4 0.333 
+#>  4 B         1 sp1         3 0.25  
+#>  5 B         1 sp2         4 0.333 
+#>  6 B         1 sp3         5 0.417 
+#>  7 C         1 sp1         5 0.417 
+#>  8 C         1 sp2         2 0.167 
+#>  9 C         1 sp3         1 0.0833
+#> 10 D         1 sp1         6 0.5   
+#> 11 D         1 sp2         7 0.583 
+#> 12 D         1 sp3         8 0.667
+```

@@ -2,6 +2,8 @@
 
 export("%>%")
 export(abbr_species)
+export(add_mgms)
 export(format_table)
+export(format_table_cpue)
 export(species_compare)
 importFrom(magrittr,"%>%")

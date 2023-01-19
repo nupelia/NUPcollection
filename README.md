@@ -152,6 +152,14 @@ table1 %>%
 #> #   3: max_target, 4: sp_lower, 5: sp_higher
 ```
 
+This function aims to provide in a simpler way the visual result found
+when plotting the data as in the following figure (using different
+data). With this function we can compare several measurements at the
+same time, without the risk of visual errors.
+
+![Example figure for
+comparison](man/figures/fig_species_compare_withoutsp.jpg)
+
 # MGMS functions
 
 ## Function `format_table_cpue()`

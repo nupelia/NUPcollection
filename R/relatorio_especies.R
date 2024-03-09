@@ -23,7 +23,7 @@ relatorio_especies <- function(dataset) {
     dplyr::arrange(ordem, familia, genero, especie)
 
   for (i in unique(dataset2$ordem)) {
-    cli::cli_text("{stringr::str_to_upper(i)}")
+    cli::cli_text("{toupper(i)}")
     teste2 <- dataset2 %>%
       dplyr::filter(ordem == i)
     for (i in unique(teste2$familia)) {

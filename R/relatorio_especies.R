@@ -23,7 +23,7 @@ relatorio_especies <- function(dataset) {
     dplyr::arrange(ordem, familia, genero, especie)
 
   for (i in unique(dataset2$ordem)) {
-    cli::cli_text("{i}")
+    cli::cli_text("{stringr::str_to_upper(i)}")
     teste2 <- dataset2 %>%
       dplyr::filter(ordem == i)
     for (i in unique(teste2$familia)) {
@@ -31,11 +31,11 @@ relatorio_especies <- function(dataset) {
       teste3 <- teste2 %>%
         dplyr::filter(familia == i)
       for (i in unique(teste3$genero)) {
-        cli::cli_text("\u00a0\u00a0{i}")
+        # cli::cli_text("\u00a0\u00a0{.emph i}")
         teste4 <- teste3 %>%
           dplyr::filter(genero == i)
         for (i in teste4$especie) {
-          cli::cli_text("\u00a0\u00a0\u00a0{i}")
+          cli::cli_text("\u00a0\u00a0\u00a0{cli::style_italic(i)}")
         }
       }
     }
